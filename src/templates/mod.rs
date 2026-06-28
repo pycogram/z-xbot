@@ -17,14 +17,14 @@ impl TweetTemplates {
         ]
     }
 
-    /// Agentropic-specific posts
-    pub fn agentropic_templates() -> Vec<&'static str> {
+    /// ZeroicAI-specific posts
+    pub fn zeroicai_templates() -> Vec<&'static str> {
         vec![
-            "Production-ready multi-agent systems in Rust. BDI architecture, swarm coordination, fault tolerance — batteries included.\n\n#Rust #Agentropic",
-            "Your agents deserve Rust's safety and performance. No GC pauses. No Python spaghetti. Just speed.\n\n#Rust #Agentropic",
-            "8 org patterns for multi-agent systems: Hierarchy, Swarm, Market, Coalition, Team, Holarchy, Federation, Blackboard. All in Rust.\n\n#Agentropic",
-            "FIPA messaging. BDI cognition. Fault-tolerant runtime. Swarm intelligence. All open source.\n\n#Rust #Agentropic #Agents",
-            "While others figure out agent basics, Agentropic devs are deploying production swarms. Different game.\n\n#Agentropic #MultiAgent",
+            "Production-ready multi-agent systems in Rust. BDI architecture, swarm coordination, fault tolerance — batteries included.\n\n#Rust #ZeroicAI",
+            "Your agents deserve Rust's safety and performance. No GC pauses. No Python spaghetti. Just speed.\n\n#Rust #ZeroicAI",
+            "8 org patterns for multi-agent systems: Hierarchy, Swarm, Market, Coalition, Team, Holarchy, Federation, Blackboard. All in Rust.\n\n#ZeroicAI",
+            "FIPA messaging. BDI cognition. Fault-tolerant runtime. Swarm intelligence. All open source.\n\n#Rust #ZeroicAI #Agents",
+            "While others figure out agent basics, ZeroicAI devs are deploying production swarms. Different game.\n\n#ZeroicAI #MultiAgent",
         ]
     }
 
@@ -68,8 +68,8 @@ impl TweetTemplates {
             .to_string()
     }
 
-    pub fn random_agentropic_tweet() -> String {
-        Self::agentropic_templates()
+    pub fn random_zeroicai_tweet() -> String {
+        Self::zeroicai_templates()
             .choose(&mut rand::thread_rng())
             .unwrap()
             .to_string()
@@ -107,7 +107,7 @@ mod tests {
         let max_len = 250;
         let all_templates: Vec<(&str, Vec<&str>)> = vec![
             ("ai", TweetTemplates::ai_templates()),
-            ("agentropic", TweetTemplates::agentropic_templates()),
+            ("zeroicai", TweetTemplates::zeroicai_templates()),
             ("crypto", TweetTemplates::crypto_ai_templates()),
             ("meme", TweetTemplates::meme_ai_templates()),
             ("general", TweetTemplates::general_bull_templates()),
