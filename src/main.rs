@@ -14,7 +14,7 @@ use std::sync::Arc;
 use tokio::sync::Mutex;
 use chrono::{Utc, NaiveDate};
 
-use agentropic_cognition::{BeliefBase, ReasoningEngine};
+use z_cognition::{BeliefBase, ReasoningEngine};
 
 use generators::TweetGenerator;
 use filters::ContentFilter;
@@ -75,7 +75,7 @@ async fn main() -> Result<()> {
     dotenv().ok();
     tracing_subscriber::fmt::init();
 
-    info!("AgentropicAI Bot starting...");
+    info!("ZeroicAIAI Bot starting...");
 
     let config = BotConfig::from_env()?;
     config.validate()?;
@@ -85,7 +85,7 @@ async fn main() -> Result<()> {
     info!("  Post Interval: {} hours", config.post_interval_hours);
     info!("  Max Posts/Day: {}", config.max_posts_per_day);
     info!("  AI Content: {}", config.enable_ai);
-    info!("  Agentropic Content: {}", config.enable_agentropic);
+    info!("  ZeroicAI Content: {}", config.enable_zeroicai);
     info!("  Crypto Content: {}", config.enable_crypto);
     info!("  Meme Content: {}", config.enable_meme);
     info!("  Replies Enabled: {}", config.enable_replies);
@@ -96,7 +96,7 @@ async fn main() -> Result<()> {
     let twitter_client = Arc::new(TwitterClient::new()?);
     info!("Twitter client initialized");
 
-    // Build the Agentropic brain
+    // Build the ZeroicAI brain
     let brain = Arc::new(AgentBrain {
         beliefs: build_knowledge_base(),
         engine: build_reasoning_engine(),
@@ -292,7 +292,7 @@ async fn check_and_reply_mentions(
             mention.id, mention.author_id, mention.text
         );
 
-        // Generate response using Agentropic reasoning
+        // Generate response using ZeroicAI reasoning
         let response = generate_response(&mention.text, &brain.beliefs, &brain.engine);
 
         match response {
