@@ -1,23 +1,23 @@
-use agentropic_cognition::{BeliefBase, Belief};
+use z_cognition::{BeliefBase, Belief};
 
-/// Build the Agentropic knowledge base with all framework facts
+/// Build the ZeroicAI knowledge base with all framework facts
 pub fn build_knowledge_base() -> BeliefBase {
     let mut beliefs = BeliefBase::new();
 
     // Core framework
-    beliefs.add(Belief::new("what_is_agentropic", "Agentropic is a modular multi-agent framework for Rust. It provides agent lifecycles, messaging, cognition, organizational patterns, and supervised runtime execution."));
-    beliefs.add(Belief::new("language", "Agentropic is built entirely in Rust for type safety, performance, and zero-cost abstractions."));
-    beliefs.add(Belief::new("license", "Agentropic is open source under the MIT and Apache-2.0 dual license."));
-    beliefs.add(Belief::new("github", "Agentropic source code is available at https://github.com/agentropic"));
-    beliefs.add(Belief::new("website", "Learn more at https://agentropic.com"));
+    beliefs.add(Belief::new("what_is_zeroicai", "ZeroicAI is a modular multi-agent framework for Rust. It provides agent lifecycles, messaging, cognition, organizational patterns, and supervised runtime execution."));
+    beliefs.add(Belief::new("language", "ZeroicAI is built entirely in Rust for type safety, performance, and zero-cost abstractions."));
+    beliefs.add(Belief::new("license", "ZeroicAI is open source under the MIT and Apache-2.0 dual license."));
+    beliefs.add(Belief::new("github", "ZeroicAI source code is available at https://github.com/ZeroicAI"));
+    beliefs.add(Belief::new("website", "Learn more at https://zeroicai.org"));
 
     // Crate structure
-    beliefs.add(Belief::new("crates", "Agentropic has 5 core crates: agentropic-core, agentropic-messaging, agentropic-cognition, agentropic-patterns, and agentropic-runtime."));
-    beliefs.add(Belief::new("core_crate", "agentropic-core defines the Agent trait, AgentId, AgentContext, AgentState lifecycle, and error handling."));
-    beliefs.add(Belief::new("messaging_crate", "agentropic-messaging provides Router, Message, MessageBuilder, and FIPA performatives for agent communication."));
-    beliefs.add(Belief::new("cognition_crate", "agentropic-cognition provides BDI architecture (beliefs, desires, intentions), planning, reasoning, and utility functions."));
-    beliefs.add(Belief::new("patterns_crate", "agentropic-patterns provides 8 organizational patterns for structuring multi-agent systems."));
-    beliefs.add(Belief::new("runtime_crate", "agentropic-runtime provides scheduling, supervision, circuit breakers, metrics, and agent isolation."));
+    beliefs.add(Belief::new("crates", "ZeroicAI has 5 core crates: z-core, z-messaging, z-cognition, z-patterns, and z-runtime."));
+    beliefs.add(Belief::new("core_crate", "z-core defines the Agent trait, AgentId, AgentContext, AgentState lifecycle, and error handling."));
+    beliefs.add(Belief::new("messaging_crate", "z-messaging provides Router, Message, MessageBuilder, and FIPA performatives for agent communication."));
+    beliefs.add(Belief::new("cognition_crate", "z-cognition provides BDI architecture (beliefs, desires, intentions), planning, reasoning, and utility functions."));
+    beliefs.add(Belief::new("patterns_crate", "z-patterns provides 8 organizational patterns for structuring multi-agent systems."));
+    beliefs.add(Belief::new("runtime_crate", "z-runtime provides scheduling, supervision, circuit breakers, metrics, and agent isolation."));
 
     // Agent trait
     beliefs.add(Belief::new("agent_trait", "Every agent implements the Agent trait with three async methods: initialize(), execute(), and shutdown()."));
@@ -37,7 +37,7 @@ pub fn build_knowledge_base() -> BeliefBase {
     beliefs.add(Belief::new("reasoning", "The ReasoningEngine performs rule-based inference using if-then rules."));
 
     // Patterns
-    beliefs.add(Belief::new("patterns", "Agentropic supports 8 organizational patterns: Hierarchy, Swarm, Coalition, Market, Blackboard, Federation, Holarchy, and Team."));
+    beliefs.add(Belief::new("patterns", "ZeroicAI supports 8 organizational patterns: Hierarchy, Swarm, Coalition, Market, Blackboard, Federation, Holarchy, and Team."));
     beliefs.add(Belief::new("hierarchy", "Hierarchy pattern: command chains with Strategic, Tactical, and Operational levels. Tasks delegate down the chain."));
     beliefs.add(Belief::new("swarm", "Swarm pattern: decentralized coordination with flocking (separation, alignment, cohesion), foraging, and consensus voting."));
     beliefs.add(Belief::new("coalition", "Coalition pattern: temporary alliances where agents join forces with a shared strategy and combined value."));
@@ -56,15 +56,15 @@ pub fn build_knowledge_base() -> BeliefBase {
     beliefs.add(Belief::new("sandbox", "Sandbox provides agent isolation with CPU quota, memory limits, thread limits, and network isolation."));
 
     // Getting started
-    beliefs.add(Belief::new("install", "Add agentropic-core to your Cargo.toml dependencies. Use async-trait and tokio for async support."));
-    beliefs.add(Belief::new("examples", "8 working examples are available at https://github.com/agentropic/agentropic-examples covering all 5 crates."));
-    beliefs.add(Belief::new("docs", "Documentation is available at https://github.com/agentropic/agentropic-docs"));
+    beliefs.add(Belief::new("install", "Add z-core to your Cargo.toml dependencies. Use async-trait and tokio for async support."));
+    beliefs.add(Belief::new("examples", "8 working examples are available at https://github.com/zeroicai/z-examples covering all 5 crates."));
+    beliefs.add(Belief::new("docs", "Documentation is available at https://github.com/zeroicai/z-docs"));
 
     // Philosophy
-    beliefs.add(Belief::new("why_rust", "Rust gives Agentropic type safety, zero-cost abstractions, fearless concurrency, and no garbage collector pauses."));
-    beliefs.add(Belief::new("design", "Agentropic uses composition over inheritance, async-first design, zero-cost patterns, and fail-graceful architecture."));
-    beliefs.add(Belief::new("fipa", "FIPA is the Foundation for Intelligent Physical Agents, an IEEE standard for agent communication that Agentropic implements."));
-    beliefs.add(Belief::new("modular", "Use only what you need. A simple agent needs only agentropic-core. Complex systems compose all five crates."));
+    beliefs.add(Belief::new("why_rust", "Rust gives ZeroicAI type safety, zero-cost abstractions, fearless concurrency, and no garbage collector pauses."));
+    beliefs.add(Belief::new("design", "ZeroicAI uses composition over inheritance, async-first design, zero-cost patterns, and fail-graceful architecture."));
+    beliefs.add(Belief::new("fipa", "FIPA is the Foundation for Intelligent Physical Agents, an IEEE standard for agent communication that ZeroicAI implements."));
+    beliefs.add(Belief::new("modular", "Use only what you need. A simple agent needs only z-core. Complex systems compose all five crates."));
 
     beliefs
 }
