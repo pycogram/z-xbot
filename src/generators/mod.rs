@@ -24,7 +24,7 @@ impl TweetGenerator {
 
         match category {
             ContentCategory::AI => TweetTemplates::random_ai_tweet(),
-            ContentCategory::Agentropic => TweetTemplates::random_agentropic_tweet(),
+            ContentCategory::ZeroicAI => TweetTemplates::random_zeroicai_tweet(),
             ContentCategory::Crypto => TweetTemplates::random_crypto_tweet(),
             ContentCategory::Meme => TweetTemplates::random_meme_tweet(),
         }
@@ -66,7 +66,7 @@ mod tests {
             enable_crypto: true,
             enable_meme: true,
             enable_ai: true,
-            enable_agentropic: true,
+            enable_zeroicai: true,
             enable_replies: false,
             mention_poll_seconds: 300,
             twitter_user_id: None,
