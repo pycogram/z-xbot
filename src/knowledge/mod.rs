@@ -9,7 +9,9 @@ pub fn build_knowledge_base() -> BeliefBase {
     beliefs.add(Belief::new("language", "ZeroicAI is built entirely in Rust for type safety, performance, and zero-cost abstractions."));
     beliefs.add(Belief::new("license", "ZeroicAI is open source under the MIT and Apache-2.0 dual license."));
     beliefs.add(Belief::new("github", "ZeroicAI source code is available at https://github.com/ZeroicAI"));
-    beliefs.add(Belief::new("website", "Learn more at https://zeroicai.org"));
+    beliefs.add(Belief::new("website", "Learn more at https://zeroicai.xyz"));
+    beliefs.add(Belief::new("telegram", "Join the ZeroicAI community on Telegram: https://t.me/ZeroicAI"));
+    beliefs.add(Belief::new("twitter", "Follow ZeroicAI on X: https://x.com/ZeroicAI"));
 
     // Crate structure
     beliefs.add(Belief::new("crates", "ZeroicAI has 5 core crates: z-core, z-messaging, z-cognition, z-patterns, and z-runtime."));
@@ -57,8 +59,16 @@ pub fn build_knowledge_base() -> BeliefBase {
 
     // Getting started
     beliefs.add(Belief::new("install", "Add z-core to your Cargo.toml dependencies. Use async-trait and tokio for async support."));
-    beliefs.add(Belief::new("examples", "8 working examples are available at https://github.com/zeroicai/z-examples covering all 5 crates."));
-    beliefs.add(Belief::new("docs", "Documentation is available at https://github.com/zeroicai/z-docs"));
+    beliefs.add(Belief::new("examples", "8 working examples are available at https://github.com/ZeroicAI/z-examples covering all 5 crates."));
+    beliefs.add(Belief::new("docs", "Documentation is available at https://zeroicai.xyz/docs"));
+
+    // Solana integration
+    beliefs.add(Belief::new("solana", "ZeroicAI has native Solana integration. Agents can transact, coordinate, and settle on-chain using the Solana network — sub-second finality, low fees."));
+    beliefs.add(Belief::new("solana_usecase", "Use ZeroicAI on Solana for: autonomous DeFi agents, on-chain coordination, decentralized AI marketplaces, and trustless agent economies."));
+    beliefs.add(Belief::new("defi_agents", "ZeroicAI agents can monitor liquidity pools, execute swaps, manage risk, and rebalance portfolios autonomously on Solana."));
+
+    // Debate agents
+    beliefs.add(Belief::new("debate_agents", "ZeroicAI runs a debate agent system on X: multiple agents with different personas (ZERO, AXIOM, NEXUS, CIPHER, VECTOR) debate trending topics in AI, crypto, and tech."));
 
     // Philosophy
     beliefs.add(Belief::new("why_rust", "Rust gives ZeroicAI type safety, zero-cost abstractions, fearless concurrency, and no garbage collector pauses."));

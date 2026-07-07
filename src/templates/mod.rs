@@ -17,6 +17,10 @@ impl TweetTemplates {
             "BDI architecture: agents that hold Beliefs, form Desires, commit to Intentions. Not a chatbot. A mind.\n\n#AI #Agents #BDI",
             "The shift from LLM wrappers to true agent systems is the most underrated transition in AI right now.\n\n#AI #Agents",
             "Autonomous agents don't just respond — they plan, reason, and act. That gap is everything.\n\n#AI #Agents",
+            "Single agents are toys. Multi-agent systems are infrastructure. Know the difference.\n\n#AI #MultiAgent",
+            "An agent that can't recover from failure isn't an agent. It's a script.\n\n#AI #Agents #Engineering",
+            "The next 5 years: every serious software system will have an agent layer. Build yours now.\n\n#AI #Agents #FutureOfWork",
+            "Swarm intelligence isn't magic. It's thousands of simple agents following local rules. The emergent behavior is the magic.\n\n#AI #SwarmIntelligence",
         ]
     }
 
@@ -30,6 +34,12 @@ impl TweetTemplates {
             "ZeroicAI agents coordinate like a team, reason like individuals, and scale like infrastructure.\n\n#ZeroicAI #MultiAgent",
             "Most agent frameworks are demos. ZeroicAI is built for production — Rust runtime, typed messaging, supervised recovery.\n\n#ZeroicAI #Rust",
             "z-cognition. z-messaging. z-patterns. z-runtime. Every layer of multi-agent intelligence, composable.\n\n#ZeroicAI #Rust",
+            "ZeroicAI's Market pattern runs real auctions between agents — English, Dutch, Vickrey. Resource allocation solved.\n\n#ZeroicAI #Agents",
+            "Self-healing by design. ZeroicAI's supervisor restarts failed agents automatically. Your system keeps running.\n\n#ZeroicAI #Rust",
+            "ZeroicAI's Coalition pattern: agents form temporary alliances, achieve shared goals, dissolve cleanly.\n\n#ZeroicAI #MultiAgent",
+            "CircuitBreaker. ExponentialBackoff. Sandbox isolation. ZeroicAI has production failure modes covered.\n\n#ZeroicAI #Rust",
+            "Open source. MIT + Apache-2.0. Build on ZeroicAI without legal overhead.\n\nzeroicai.xyz\n\n#ZeroicAI #OpenSource #Rust",
+            "ZeroicAI on Solana: agents that transact, coordinate, and settle on-chain. Native integration, not an afterthought.\n\n#ZeroicAI #Solana #AI",
         ]
     }
 
@@ -42,6 +52,9 @@ impl TweetTemplates {
             "Every major protocol will have AI agents soon. The ones sleeping on this will regret it.\n\n#DeFi #AI #Agents",
             "Algo trading → AI trading agents → Agent swarms coordinating trades. We're entering the swarm era.\n\n#Crypto #AIAgents",
             "Autonomous agents that negotiate, trade, and settle on-chain without human approval. That's not sci-fi anymore.\n\n#DeFi #AI #Solana",
+            "Solana + AI agents = sub-second finality with autonomous execution. The fastest agent economy on the planet.\n\n#Solana #AI #DeFi",
+            "Decentralized AI marketplaces: agents listing services, bidding on tasks, settling on-chain. No middleman.\n\n#AI #DeFi #Agents",
+            "On-chain agent coordination means auditable decisions, trustless execution, and zero single points of failure.\n\n#Blockchain #AI #Agents",
         ]
     }
 
@@ -53,6 +66,8 @@ impl TweetTemplates {
             "AI tokens aren't just memes. They're infrastructure for autonomous economies. (Also they're memes.)\n\n#AI #Crypto",
             "The best performing asset next cycle will be an AI agent token nobody's heard of yet. Screenshot this.\n\n#Crypto #AI",
             "Agents that generate alpha, execute trades, and post their own updates. The loop is closing.\n\n#AI #Crypto #Agents",
+            "Imagine deploying a swarm of agents to snipe liquidity pools at 3am while you sleep. That's the meta.\n\n#DeFi #AI #Agents",
+            "The meme is the wrapper. The agent is the product. Learn to see through it.\n\n#AI #Crypto",
         ]
     }
 
@@ -66,6 +81,11 @@ impl TweetTemplates {
             "Building AI agents right now is like building websites in 1995. Early. Weird. Massively underpriced.\n\n#AI #Agents #Tech",
             "Self-healing systems, decentralized AI markets, autonomous governance. All of this runs on agent infrastructure.\n\n#AI #Agents",
             "The organizations that win the next decade will be the ones that figured out how to deploy agent teams.\n\n#AI #Automation #Future",
+            "Every SaaS product is a workflow. Every workflow can become an agent. The transition has started.\n\n#AI #Automation #SaaS",
+            "Autonomous research pipelines. Self-healing infrastructure. Agent-run supply chains. Not hypothetical — buildable today.\n\n#AI #Agents",
+            "The hardest part of multi-agent systems isn't the AI. It's the coordination. That's the unsolved problem.\n\n#AI #Agents #Engineering",
+            "Agents that plan, delegate, recover from failure, and report back. That's a team, not a tool.\n\n#AI #Agents",
+            "Join the ZeroicAI community on Telegram: t.me/ZeroicAI\n\nBuilding the agent economy together.\n\n#ZeroicAI #AI #Agents",
         ]
     }
 
