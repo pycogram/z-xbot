@@ -140,6 +140,20 @@ pub fn build_reasoning_engine() -> ReasoningEngine {
             .with_conclusion("topic:solana"),
     );
 
+    // Token
+    engine.add_rule(
+        Rule::new("topic:token")
+            .with_condition("token")
+            .with_condition("ticker")
+            .with_condition("ca")
+            .with_condition("contract")
+            .with_condition("pumpfun")
+            .with_condition("pump")
+            .with_condition("0icai")
+            .with_condition("buy")
+            .with_conclusion("topic:token"),
+    );
+
     // Owner / creator
     engine.add_rule(
         Rule::new("topic:owner")
@@ -227,6 +241,10 @@ fn get_response_candidates(topic: &str, beliefs: &BeliefBase) -> Vec<String> {
         "topic:examples" => vec![
             lookup(beliefs, "examples"),
             format!("{}\n\nCovers all 5 crates end-to-end.", lookup(beliefs, "examples")),
+        ],
+        "topic:token" => vec![
+            lookup(beliefs, "token"),
+            format!("{}\n\n{}", lookup(beliefs, "token"), lookup(beliefs, "solana")),
         ],
         "topic:owner" => vec![
             lookup(beliefs, "owner"),
