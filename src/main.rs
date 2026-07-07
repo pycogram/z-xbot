@@ -340,6 +340,7 @@ async fn generate_reply_with_llm(
     let all_keys = [
         "what_is_zeroicai", "bdi", "patterns", "messaging", "cognition_crate",
         "runtime_crate", "supervisor", "circuit_breaker", "solana", "install", "docs", "owner",
+        "token", "token_ca", "token_ticker",
     ];
     let context = beliefs_as_context(beliefs, &all_keys);
 
