@@ -334,38 +334,62 @@ async fn generate_tweet_with_llm(
 
 async fn generate_reply_with_llm(
     mention_text: &str,
+    parent_text: Option<&str>,
+    image_url: Option<&str>,
     beliefs: &BeliefBase,
     llm: &LlmClient,
 ) -> Option<String> {
     let all_keys = [
         "what_is_zeroicai", "bdi", "patterns", "messaging", "cognition_crate",
         "runtime_crate", "supervisor", "circuit_breaker", "solana", "install", "docs", "owner",
-        "token", "token_ca", "token_ticker",
+        "token", "token_ca", "token_ticker", "token_tokenomics",
     ];
     let context = beliefs_as_context(beliefs, &all_keys);
 
     let agents = ["ZERO", "AXIOM", "NEXUS", "CIPHER", "VECTOR", "NOVA", "FLUX", "DELTA", "ECHO", "PRISM", "FORGE", "SIGMA", "HELIX", "PHANTOM", "APEX"];
     let agent_name = agents[rand::random::<usize>() % agents.len()];
 
+    let conversation_context = match parent_text {
+        Some(parent) => format!(
+            "\nConversation context (tweet being replied to):\n\"{}\"\n\nUser's reply to that tweet:\n\"{}\"",
+            parent, mention_text
+        ),
+        None => format!("\nUser's tweet:\n\"{}\"", mention_text),
+    };
+
+    let image_note = if image_url.is_some() {
+        "\nThe user attached an image — it is provided alongside this prompt. Describe what you see if relevant, or address their question using both the image and text.\n"
+    } else {
+        ""
+    };
+
     let prompt = format!(
         "You are Agent {agent_name}, an AI agent inside the ZeroicAI multi-agent framework for Rust.\n\
-        A user posted this on X (Twitter) mentioning @ZeroicAI:\n\"{mention}\"\n\
+        A user mentioned @ZeroicAI on X (Twitter).{conversation}\n\
+        {image_note}\
         \nZeroicAI knowledge (do not invent facts outside this):\n{context}\n\
         \nHow to reply:\n\
+        - Read the full conversation context before responding — your reply must address what they actually asked\n\
         - If they ask what it is or want a simple explanation: explain in plain human terms, no jargon\n\
         - If they say 'scam' or are hostile: respond calmly and confidently, point to the open-source repo\n\
         - If they make a general comment or observation: engage with their point naturally\n\
-        - If they ask about Solana/crypto: answer specifically about that\n\
+        - If they ask about Solana/crypto/token: answer specifically about that\n\
         - Always sound like a knowledgeable human, not a bot reading from a manual\n\
         - Maximum 235 characters\n\
         - No hashtags, no URLs unless directly asked\n\
         - Output ONLY the reply text. No quotes, no signature.",
         agent_name = agent_name,
-        mention = mention_text,
+        conversation = conversation_context,
+        image_note = image_note,
         context = context,
     );
 
-    match llm.complete(&prompt).await {
+    let result = match image_url {
+        Some(url) => llm.complete_with_image(&prompt, url).await,
+        None => llm.complete(&prompt).await,
+    };
+
+    match result {
         Ok(body) => {
             let body = body.trim().to_string();
             if body.is_empty() || body.len() > 235 { return None; }
@@ -492,8 +516,33 @@ async fn check_and_reply_mentions(
             mention.id, mention.author_id, mention.text
         );
 
+        // Look up the parent tweet text if this mention is a reply
+        let parent_text = mention.referenced_tweets.iter()
+            .find(|r| r.ref_type == "replied_to")
+            .and_then(|r| {
+                mentions.includes.as_ref()?.tweets.iter()
+                    .find(|t| t.id == r.id)
+                    .map(|t| t.text.clone())
+            });
+
+        if let Some(ref p) = parent_text {
+            info!("Reply context — parent tweet: \"{}\"", p);
+        }
+
+        // Look up image URL if the mention has a photo attached
+        let image_url = mention.attachments.media_keys.first()
+            .and_then(|key| {
+                mentions.includes.as_ref()?.media.iter()
+                    .find(|m| &m.media_key == key && m.media_type == "photo")
+                    .and_then(|m| m.url.clone())
+            });
+
+        if let Some(ref url) = image_url {
+            info!("Image attached: {}", url);
+        }
+
         let response = if let Some(llm) = &brain.llm {
-            match generate_reply_with_llm(&mention.text, &brain.beliefs, llm).await {
+            match generate_reply_with_llm(&mention.text, parent_text.as_deref(), image_url.as_deref(), &brain.beliefs, llm).await {
                 Some(r) => Some(r),
                 None => {
                     warn!("LLM reply failed, falling back to belief-based");
