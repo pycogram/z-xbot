@@ -41,6 +41,7 @@ pub struct MentionsResponse {
     #[serde(default)]
     pub data: Vec<MentionData>,
     pub meta: Option<MentionsMeta>,
+    pub includes: Option<TweetIncludes>,
 }
 
 #[derive(Deserialize, Debug, Clone)]
@@ -48,6 +49,46 @@ pub struct MentionData {
     pub id: String,
     pub text: String,
     pub author_id: String,
+    #[serde(default)]
+    pub referenced_tweets: Vec<ReferencedTweetRef>,
+    #[serde(default)]
+    pub attachments: TweetAttachments,
+}
+
+#[derive(Deserialize, Debug, Clone)]
+pub struct ReferencedTweetRef {
+    #[serde(rename = "type")]
+    pub ref_type: String,
+    pub id: String,
+}
+
+#[derive(Deserialize, Debug)]
+pub struct TweetIncludes {
+    #[serde(default)]
+    pub tweets: Vec<ExpandedTweet>,
+    #[serde(default)]
+    pub media: Vec<MediaObject>,
+}
+
+#[derive(Deserialize, Debug, Clone)]
+pub struct ExpandedTweet {
+    pub id: String,
+    pub text: String,
+}
+
+#[derive(Deserialize, Debug, Clone)]
+pub struct MediaObject {
+    pub media_key: String,
+    #[serde(rename = "type")]
+    pub media_type: String,
+    pub url: Option<String>,
+    pub preview_image_url: Option<String>,
+}
+
+#[derive(Deserialize, Debug, Clone, Default)]
+pub struct TweetAttachments {
+    #[serde(default)]
+    pub media_keys: Vec<String>,
 }
 
 #[derive(Deserialize, Debug)]
@@ -177,7 +218,15 @@ impl TwitterClient {
         query_params.insert("max_results".to_string(), "10".to_string());
         query_params.insert(
             "tweet.fields".to_string(),
-            "author_id,text".to_string(),
+            "author_id,text,referenced_tweets,attachments".to_string(),
+        );
+        query_params.insert(
+            "expansions".to_string(),
+            "referenced_tweets.id,attachments.media_keys".to_string(),
+        );
+        query_params.insert(
+            "media.fields".to_string(),
+            "url,type,preview_image_url".to_string(),
         );
 
         if let Some(sid) = since_id {
