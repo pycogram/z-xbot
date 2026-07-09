@@ -74,4 +74,52 @@ impl LlmClient {
             .trim()
             .to_string())
     }
+
+    pub async fn complete_with_image(&self, prompt: &str, image_url: &str) -> Result<String> {
+        let body = serde_json::json!({
+            "model": "claude-haiku-4-5-20251001",
+            "max_tokens": 300,
+            "messages": [{
+                "role": "user",
+                "content": [
+                    {
+                        "type": "image",
+                        "source": {
+                            "type": "url",
+                            "url": image_url
+                        }
+                    },
+                    {
+                        "type": "text",
+                        "text": prompt
+                    }
+                ]
+            }]
+        });
+
+        let response = self.client
+            .post("https://api.anthropic.com/v1/messages")
+            .header("x-api-key", &self.api_key)
+            .header("anthropic-version", "2023-06-01")
+            .header("content-type", "application/json")
+            .json(&body)
+            .send()
+            .await?;
+
+        if !response.status().is_success() {
+            let status = response.status();
+            let err = response.text().await.unwrap_or_default();
+            warn!("Claude vision API error {}: {}", status, err);
+            anyhow::bail!("Claude vision API error {}: {}", status, err);
+        }
+
+        let parsed = response.json::<ApiResponse>().await?;
+        Ok(parsed.content
+            .into_iter()
+            .next()
+            .map(|b| b.text)
+            .unwrap_or_default()
+            .trim()
+            .to_string())
+    }
 }
